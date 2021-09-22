@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class ListaPeliculas {
     private HashMap<String,Pelicula> peliculas;
     private ListaActores todos;
-    private static ListaPeliculas miLista;
+    private static ListaPeliculas miListaPeliculas;
 
     //Constructora
     private ListaPeliculas(){
@@ -16,10 +16,10 @@ public class ListaPeliculas {
 
     //Patron singleton que devuelve la unica instancia de ListaPeliculas
     public static ListaPeliculas getListaPeliculas() {
-        if(ListaPeliculas.miLista==null) {
-            ListaPeliculas.miLista = new ListaPeliculas();
+        if(ListaPeliculas.miListaPeliculas==null) {
+            ListaPeliculas.miListaPeliculas = new ListaPeliculas();
         }
-        return miLista;
+        return miListaPeliculas;
     }
 
     //Otros Métodos
