@@ -10,7 +10,7 @@ public class ListaActores {
         this.actores = new HashMap<String,Actor>();
     }
 
-    //Otros Métodos
+    //Métodos
     public Actor buscarActor(String pNombre){
         if(this.actores.containsKey(pNombre)) {
             return actores.get(pNombre);

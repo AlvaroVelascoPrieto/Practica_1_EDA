@@ -1,7 +1,10 @@
 package org.eda.packlaboratorio1;
 
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class ListaPeliculas {
     private HashMap<String,Pelicula> peliculas;
@@ -22,7 +25,20 @@ public class ListaPeliculas {
         return miListaPeliculas;
     }
 
-    //Otros Métodos
+    //Métodos
+    public void lectorArchivo(String pNombreArchivo){
+        try {
+            Scanner archivo = new Scanner(new FileReader(pNombreArchivo));
+            String linea;
+
+            while (archivo.hasNext()){
+                linea = archivo.nextLine();
+                //AÑADIR COMO SEPARAR LOS ELEMENTOS DE LAS LINEAS
+            }
+        }
+        catch (IOException e) {e.printStackTrace();}
+    }
+
     public Actor buscarActor(String pNombre){
         //Pre: el método recibe un string que representa el nombre del actor abuscar
         //Post: el método devuelve un actor de la manera especificada en el método buscarActor de la clase ListaActores
