@@ -22,7 +22,7 @@ public class ListaPeliculas {
         return miLista;
     }
 
-    //Métodos
+    //Otros Métodos
     public Actor buscarActor(String pNombre){
         //Pre: el método recibe un string que representa el nombre del actor abuscar
         //Post: el método devuelve un actor de la manera especificada en el método buscarActor de la clase ListaActores

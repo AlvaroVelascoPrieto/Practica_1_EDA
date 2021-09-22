@@ -10,6 +10,8 @@ public class Pelicula {
         this.recaudacion = pRecaudacion;
     }
 
+    //otros métodos
+
 
     //Métodos
     public void incrementarRecaudacion(float pImporte) {
