@@ -18,20 +18,20 @@ public class ListaActores {
         return null;
     }
 
-    public void insertarActor(Actor pActor) {
-        if (!(actores.containsKey(pActor))) {
-            actores.put("Juan", pActor);
+    public void insertarActor(String pNombre,Actor pActor) {
+        if (!(actores.containsKey(pNombre))) {
+            actores.put(pNombre, pActor);
         }
     }
 
-    public ListaActores ordenarLista(){
-        ListaActores listaordenada= new ListaActores();
+    //public ListaActores ordenarLista(){
+    //    ListaActores listaordenada= new ListaActores();
 
-    }
+    //}
 
-    public void borrarActor(Actor pActor){
-        if (actores.containsKey(pActor)) {
-            actores.remove(pActor);
+    public void borrarActor(String pNombre){
+        if (actores.containsKey(pNombre)) {
+            actores.remove(pNombre);
         }
     }
 }
