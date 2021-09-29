@@ -32,7 +32,17 @@ public class ListaPeliculas {
 
             while (archivo.hasNext()){
                 linea = archivo.nextLine();
-                //AÑADIR COMO SEPARAR LOS ELEMENTOS DE LAS LINEAS
+                String[] part =linea.split("\\s++-{1,}+>{1,}+\\s");
+                String pelicula=part[0];
+                String Actores=part[1];
+                String[] tablaAct =Actores.split("\\s+#{1,}+\\s");
+                peliculas.put(pelicula, new Pelicula(pelicula,0));
+                int i=0;
+                while (i<(tablaAct.length)){
+                    peliculas.get(pelicula).insertarActor(tablaAct[i]);
+                    todos.insertarActor(tablaAct[i]);
+                    i++;
+                }
             }
         }
         catch (IOException e) {e.printStackTrace();}

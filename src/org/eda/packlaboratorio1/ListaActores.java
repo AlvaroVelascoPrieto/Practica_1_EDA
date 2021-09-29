@@ -20,7 +20,8 @@ public class ListaActores {
 
     public void insertarActor(String pNombre) {
         if (!(actores.containsKey(pNombre))) {
-            actores.put(pNombre, new Actor(pNombre));
+            Actor actor = new Actor(pNombre);
+            actores.put(pNombre, actor);
         }
     }
 
@@ -36,6 +37,7 @@ public class ListaActores {
     }
 
     public HashMap<String,Actor> devolverActores(){
+
         return actores;
     }
 }

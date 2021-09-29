@@ -28,9 +28,7 @@ public class Pelicula {
         this.actores.borrarActor(pActor);
     }
 
-    public void insertarActor(String pNombre) {
-        actores.insertarActor(pNombre);
-    }
+    public void insertarActor(String pNombre) { actores.insertarActor(pNombre); }
 
     public HashMap<String ,Actor> devolverActores (){
         return actores.devolverActores();
