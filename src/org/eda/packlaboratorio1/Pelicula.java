@@ -1,5 +1,6 @@
 package org.eda.packlaboratorio1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Pelicula {
@@ -34,5 +35,6 @@ public class Pelicula {
     public HashMap<String ,Actor> devolverActores (){
         return actores.devolverActores();
     }
+
 
 }
