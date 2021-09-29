@@ -1,11 +1,15 @@
 package org.eda.packlaboratorio1;
 
+import java.util.HashMap;
+
 public class Pelicula {
     private float recaudacion;
+    private ListaActores actores;
     private String nombre;
 
     //Constructora
     public Pelicula(String pNombre, float pRecaudacion){
+        this.actores = new ListaActores();
         this.nombre = pNombre;
         this.recaudacion = pRecaudacion;
     }
@@ -18,4 +22,17 @@ public class Pelicula {
         // incremento recibido como parámetro del método
         this.recaudacion = this.recaudacion + pImporte;
     }
+
+    public void borrarActor(String pActor){
+        this.actores.borrarActor(pActor);
+    }
+
+    public void insertarActor(String pNombre) {
+        actores.insertarActor(pNombre);
+    }
+
+    public HashMap<String ,Actor> devolverActores (){
+        return actores.devolverActores();
+    }
+
 }

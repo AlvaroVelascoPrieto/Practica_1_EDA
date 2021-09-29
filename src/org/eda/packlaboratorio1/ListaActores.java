@@ -18,9 +18,9 @@ public class ListaActores {
         return null;
     }
 
-    public void insertarActor(String pNombre,Actor pActor) {
+    public void insertarActor(String pNombre) {
         if (!(actores.containsKey(pNombre))) {
-            actores.put(pNombre, pActor);
+            actores.put(pNombre, new Actor(pNombre));
         }
     }
 
@@ -33,5 +33,9 @@ public class ListaActores {
         if (actores.containsKey(pNombre)) {
             actores.remove(pNombre);
         }
+    }
+
+    public HashMap<String,Actor> devolverActores(){
+        return actores;
     }
 }

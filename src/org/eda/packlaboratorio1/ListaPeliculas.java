@@ -3,8 +3,7 @@ package org.eda.packlaboratorio1;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class ListaPeliculas {
     private HashMap<String,Pelicula> peliculas;
@@ -53,6 +52,45 @@ public class ListaPeliculas {
             ListaPeliculas.getListaPeliculas().peliculas.get(pPelicula).incrementarRecaudacion(pImporte);
         }
     }
+
+    public void borrarActor(String pActor){
+        //Pre: el metodo recibe un string con el nombre del actor
+        //Post: se busca el nombre del actor en todas las peliculas y se borran todas sus apariciones
+        //ademas se borra de la lista general de actores
+        peliculas.forEach((k,v) -> v.borrarActor(pActor));
+        todos.borrarActor(pActor);
+    }
+
+    public void insertarActor(String pPelicula, String pNombre){
+        //Pre: el método recibe dos strings como parametros representandoel titulo de la pelicula
+        //a la que se desea añadir el actor y el nombre del actor
+        //Post: el método inserta al actor en la lista general de actores (si no se encuentra presente)
+        //y tambien lo inserta en la lista de actores de dicha pelicula si se encuentra ya registrada,
+        //sino crea una pelicula con ese titulo e inserta el actor.
+        todos.insertarActor(pNombre);
+        if (peliculas.containsKey(pPelicula)){
+            peliculas.get(pPelicula).insertarActor(pNombre);
+        }
+        else{
+            peliculas.put(pPelicula,new Pelicula(pPelicula, 0));
+            peliculas.get(pPelicula).insertarActor(pNombre);
+        }
+
+    }
+
+    public HashMap<String, Actor> devolverActores(String pPelicula){
+        //Pre: el método recibe un string representando el nombre de la pelicula de la que se desea obtener la lista
+        //Post: si esa pelicula existe devuelve un HashMap conteniendo los actores con la siguiente estructura
+        //HashMap<String nombreDelActor, Actor instanciaDelObjetoDelActor>
+        if (peliculas.containsKey(pPelicula)){
+             return peliculas.get(pPelicula).devolverActores();
+        }
+        else {
+            return null;
+        }
+    }
+
+
 
 
 
