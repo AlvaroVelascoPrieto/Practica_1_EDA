@@ -123,6 +123,12 @@ public class ListaPeliculas {
         return peliculasADevolver;
     }
 
+    public ArrayList<Actor> devolverTodosLosActoresOrdenados(){
+        return todos.ordenarActores();
+    }
+
+
+
 
 
 }
