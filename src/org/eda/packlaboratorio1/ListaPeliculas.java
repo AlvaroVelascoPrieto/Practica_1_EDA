@@ -39,8 +39,15 @@ public class ListaPeliculas {
                 peliculas.put(pelicula, new Pelicula(pelicula,0));
                 int i=0;
                 while (i<(tablaAct.length)){
-                    peliculas.get(pelicula).insertarActor(tablaAct[i]);
-                    todos.insertarActor(tablaAct[i]);
+                    if(todos.contiene(tablaAct[i])){
+                        Actor miActor = todos.buscarActor(tablaAct[i]);
+                        peliculas.get(pelicula).insertarActor(miActor);
+                    }
+                    else{
+                        Actor miActor = new Actor(tablaAct[i]);
+                        peliculas.get(pelicula).insertarActor(miActor);
+                        todos.insertarActor(miActor);
+                    }
                     i++;
                 }
             }
@@ -77,13 +84,14 @@ public class ListaPeliculas {
         //Post: el método inserta al actor en la lista general de actores (si no se encuentra presente)
         //y tambien lo inserta en la lista de actores de dicha pelicula si se encuentra ya registrada,
         //sino crea una pelicula con ese titulo e inserta el actor.
-        todos.insertarActor(pNombre);
+        Actor miActor = new Actor(pNombre);
+        todos.insertarActor(miActor);
         if (peliculas.containsKey(pPelicula)){
-            peliculas.get(pPelicula).insertarActor(pNombre);
+            peliculas.get(pPelicula).insertarActor(miActor);
         }
         else{
             peliculas.put(pPelicula,new Pelicula(pPelicula, 0));
-            peliculas.get(pPelicula).insertarActor(pNombre);
+            peliculas.get(pPelicula).insertarActor(miActor);
         }
 
     }

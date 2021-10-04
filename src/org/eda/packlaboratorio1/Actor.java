@@ -9,6 +9,8 @@ public class Actor {
     }
 
     //Otros metodos
-
+    public String getNombre(){
+        return this.nombre;
+    }
 
 }

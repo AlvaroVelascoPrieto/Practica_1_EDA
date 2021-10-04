@@ -18,12 +18,13 @@ public class ListaActores {
         return null;
     }
 
-    public void insertarActor(String pNombre) {
-        if (!(actores.containsKey(pNombre))) {
-            Actor actor = new Actor(pNombre);
-            actores.put(pNombre, actor);
+    public void insertarActor(Actor pActor) {
+        if (!(actores.containsValue(pActor))) {
+            actores.put(pActor.getNombre(), pActor);
         }
     }
+
+
 
     //public ListaActores ordenarLista(){
     //    ListaActores listaordenada= new ListaActores();
@@ -39,5 +40,9 @@ public class ListaActores {
     public HashMap<String,Actor> devolverActores(){
 
         return actores;
+    }
+
+    public boolean contiene(String pActor){
+        return actores.containsKey(pActor);
     }
 }
