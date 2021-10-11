@@ -2,7 +2,9 @@ package org.eda.packlaboratorio1;
 
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class ListaPeliculas {
@@ -30,11 +32,12 @@ public class ListaPeliculas {
             Scanner archivo = new Scanner(new FileReader(pNombreArchivo));
             String linea;
 
-            while (archivo.hasNext()){
+            while (archivo.hasNextLine()){
                 linea = archivo.nextLine();
                 String[] part =linea.split("\\s++-{1,}+>{1,}+\\s");
                 String pelicula=part[0];
                 String Actores=part[1];
+
                 String[] tablaAct =Actores.split("\\s+#{1,}+\\s");
                 peliculas.put(pelicula, new Pelicula(pelicula,0));
                 int i=0;
@@ -51,6 +54,8 @@ public class ListaPeliculas {
                     i++;
                 }
             }
+            System.out.println("Leido");
+            archivo.close();
         }
         catch (IOException e) {e.printStackTrace();}
     }
@@ -61,7 +66,7 @@ public class ListaPeliculas {
         return ListaPeliculas.getListaPeliculas().todos.buscarActor(pNombre);
     }
 
-    public void incrementarRecaudacion(String pPelicula, float pImporte){
+    public void incrementarRecaudacion(String pPelicula, double pImporte){
         //Pre: La película con el titulo que recibe este método como parámetro puede estar contenida en nuestra lista o no
         //Post: Si esta pelicula esta contenida en la lista de películas entonces se ejecuta el método
         // incrementar recaudacion de dicha clase sino no se incrementa la recaudacion.
@@ -84,7 +89,14 @@ public class ListaPeliculas {
         //Post: el método inserta al actor en la lista general de actores (si no se encuentra presente)
         //y tambien lo inserta en la lista de actores de dicha pelicula si se encuentra ya registrada,
         //sino crea una pelicula con ese titulo e inserta el actor.
-        Actor miActor = new Actor(pNombre);
+        Actor miActor;
+        if (todos.contiene(pNombre)){
+            miActor = todos.buscarActor(pNombre);
+        }
+        else {
+            miActor = new Actor(pNombre);
+        }
+
         todos.insertarActor(miActor);
         if (peliculas.containsKey(pPelicula)){
             peliculas.get(pPelicula).insertarActor(miActor);
@@ -108,6 +120,7 @@ public class ListaPeliculas {
         }
     }
 
+
     public ArrayList<Pelicula> devolverPeliculas(String pActor){
         //Pre: el metodo recibe un parametro de tipo String que representa el nombre del actor
         //Post: se busca en cada pelicula si el actor esta en su lista de actores y se devuelve un ArrayList
@@ -121,6 +134,27 @@ public class ListaPeliculas {
             }
         }
         return peliculasADevolver;
+    }
+
+    public void guardarListaEnFichero(String pDireccionFichero){
+        FileWriter fichero;
+        PrintWriter pw;
+        try{
+            fichero = new FileWriter(pDireccionFichero);
+            pw = new PrintWriter(fichero);
+            if (!peliculas.isEmpty()){
+                for (Map.Entry<String, Pelicula> entry : peliculas.entrySet()) {
+                    pw.print(entry.getKey() + " --->>> ");
+                    HashMap<String,Actor> actores = entry.getValue().devolverActores();
+                    for (Map.Entry<String, Actor> entryAct : actores.entrySet()){
+                        pw.print(entryAct.getKey() + " ##### ");
+                    }
+                    pw.println();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Actor> devolverTodosLosActoresOrdenados(){

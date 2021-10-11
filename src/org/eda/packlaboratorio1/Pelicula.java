@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Pelicula {
-    private float recaudacion;
+    private double recaudacion;
     private ListaActores actores;
     private String nombre;
 
@@ -17,7 +17,7 @@ public class Pelicula {
 
 
     //Métodos
-    public void incrementarRecaudacion(float pImporte) {
+    public void incrementarRecaudacion(double pImporte) {
         //Pre: El atributo recaudación contiene un valor inicial
         //Post: El atributo recaudacion contiene el valor correspondiente a el valor inicial mas el importe de
         // incremento recibido como parámetro del método
