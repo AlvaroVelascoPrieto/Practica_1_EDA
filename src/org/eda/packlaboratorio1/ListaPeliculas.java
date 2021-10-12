@@ -121,16 +121,16 @@ public class ListaPeliculas {
     }
 
 
-    public ArrayList<Pelicula> devolverPeliculas(String pActor){
+    public HashMap<String,Pelicula> devolverPeliculas(String pActor){
         //Pre: el metodo recibe un parametro de tipo String que representa el nombre del actor
         //Post: se busca en cada pelicula si el actor esta en su lista de actores y se devuelve un ArrayList
         //con las peliculas en las que aparece el actor
         HashMap<String, Actor> actores;
-        ArrayList<Pelicula> peliculasADevolver = new ArrayList<Pelicula>();
+        HashMap<String,Pelicula> peliculasADevolver = new HashMap<String,Pelicula>();
         for (Map.Entry<String, Pelicula> entry : peliculas.entrySet()) {
             actores = entry.getValue().devolverActores();
             if (actores.containsKey(pActor)){
-                peliculasADevolver.add(entry.getValue());
+                peliculasADevolver.put(entry.getKey(),entry.getValue());
             }
         }
         return peliculasADevolver;
