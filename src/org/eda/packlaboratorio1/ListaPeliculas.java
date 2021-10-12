@@ -112,12 +112,11 @@ public class ListaPeliculas {
         //Pre: el método recibe un string representando el nombre de la pelicula de la que se desea obtener la lista
         //Post: si esa pelicula existe devuelve un HashMap conteniendo los actores con la siguiente estructura
         //HashMap<String nombreDelActor, Actor instanciaDelObjetoDelActor>
+        HashMap<String,Actor> actoresADevolver = new HashMap<String, Actor>();
         if (peliculas.containsKey(pPelicula)){
-             return peliculas.get(pPelicula).devolverActores();
+             actoresADevolver = peliculas.get(pPelicula).devolverActores();
         }
-        else {
-            return null;
-        }
+        return actoresADevolver;
     }
 
 
