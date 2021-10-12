@@ -44,4 +44,21 @@ public class Teclado {
 		String texto=teclado.nextLine();
 		return texto;
 	}
+
+	public int leerInt() {
+		int numero = 10;
+		boolean correcto = false;
+		do {
+			try {
+				numero=teclado.nextInt();
+				teclado.nextLine();
+				correcto = true;
+			}
+			catch (InputMismatchException i){
+				System.out.println("Caracter no valido");
+				teclado.next();
+			}
+		}while (!correcto);
+		return numero;
+	}
 }

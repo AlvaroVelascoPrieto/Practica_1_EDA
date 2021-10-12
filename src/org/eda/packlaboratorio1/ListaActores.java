@@ -45,7 +45,7 @@ public class ListaActores {
     }
 
 
-    public ArrayList<Actor> ordenarPorMezcla(ArrayList<Actor> pArrayActores){
+    private ArrayList<Actor> ordenarPorMezcla(ArrayList<Actor> pArrayActores){
         ArrayList<Actor> izq = new ArrayList<Actor>();
         ArrayList<Actor> der = new ArrayList<Actor>();
 

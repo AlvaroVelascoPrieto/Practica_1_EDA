@@ -63,7 +63,7 @@ public class ListaPeliculas {
     public Actor buscarActor(String pNombre){
         //Pre: el método recibe un string que representa el nombre del actor abuscar
         //Post: el método devuelve un actor de la manera especificada en el método buscarActor de la clase ListaActores
-        return ListaPeliculas.getListaPeliculas().todos.buscarActor(pNombre);
+        return todos.buscarActor(pNombre);
     }
 
     public void incrementarRecaudacion(String pPelicula, double pImporte){
