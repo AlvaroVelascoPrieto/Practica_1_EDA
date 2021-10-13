@@ -20,7 +20,9 @@ public class ListaPeliculasTest {
     String a3;
     String a4;
     String a5;
+    String a7;
     String p1;
+    String p4;
     ArrayList<Actor> actoresOrdenados;
     ArrayList<Actor> actoresOrdenadosAutomaticamente;
 
@@ -34,6 +36,7 @@ public class ListaPeliculasTest {
         a3 = "Actor3";
         a4 = "Actor4";
         a5 = "Actor5";
+        a7 ="Actor7";
         actoresOrdenados = new ArrayList<Actor>();
         actoresOrdenados.add(new Actor(a1));
         actoresOrdenados.add(new Actor(a2));
@@ -41,6 +44,7 @@ public class ListaPeliculasTest {
         actoresOrdenados.add(new Actor(a4));
         actoresOrdenados.add(new Actor(a5));
         p1 = "Pelicula 1";
+        p4 = "Pelicula 4";
 
         direccion = System.getProperty("user.dir") + "\\src\\org\\eda\\packlaboratorio1\\ListaPeliculasPequeña.txt";
         ListaPeliculas.getListaPeliculas().lectorArchivo(direccion);
@@ -62,6 +66,7 @@ public class ListaPeliculasTest {
     public void testBuscarActor() {
         assertEquals(ListaPeliculas.getListaPeliculas().buscarActor(a1).getNombre(), a1);
         assertNotEquals(ListaPeliculas.getListaPeliculas().buscarActor(a1).getNombre(), a2);
+        assertNull(ListaPeliculas.getListaPeliculas().buscarActor((a7)));// buscar unu actor que no existe
     }
 
     @Test
@@ -73,15 +78,45 @@ public class ListaPeliculasTest {
 
     @Test
     public void testInsertarActor() {
+        //Insertar un actor que no se encuentra en la lista general de actores en una película que ya está registrada.
         ListaPeliculas.getListaPeliculas().insertarActor(p1,"David");
         assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas("David").get(p1).getTitulo(),p1);
+
+        //Insertar un actor que no se encuentra en la lista general de actores en una película que no está registrada.
+        ListaPeliculas.getListaPeliculas().insertarActor(p4,"Alvaro");
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas("Alvaro").get(p4).getTitulo(),p4);
+
+        //Insertar un actor que ya se encuentra en la lista general de actores en una película que ya está registrada.
+        ListaPeliculas.getListaPeliculas().insertarActor(p1,a1);
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a1).get(p1).getTitulo(),p1);
+
+        //Insertar un actor que ya se encuentra en la lista general de actores en una película que no está registrada.
+        ListaPeliculas.getListaPeliculas().insertarActor(p4,a1);
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a1).get(p4).getTitulo(),p4);
+
+
+
     }
 
     @Test
     public void testBorrarActor() {
+        //Borrar un actor que aparece en el HashMap de actores y está contenido en más de una película.
         assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a1).get(p1).getTitulo(),p1);
         ListaPeliculas.getListaPeliculas().borrarActor(a1);
         assertNull(ListaPeliculas.getListaPeliculas().devolverPeliculas(a1).get(p1));
+
+
+        //Borrar un actor que aparece en el HashMap de actores y está contenido en una película.
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a3).get(p1).getTitulo(),p1);
+        ListaPeliculas.getListaPeliculas().borrarActor(a3);
+        assertNull(ListaPeliculas.getListaPeliculas().devolverPeliculas(a3).get(p1));
+
+
+        //Borrar un actor que no aparece en el HashMap de actores.
+        assertNull(ListaPeliculas.getListaPeliculas().devolverPeliculas(a7).get(p1));
+        ListaPeliculas.getListaPeliculas().borrarActor(a7);
+        assertNull(ListaPeliculas.getListaPeliculas().devolverPeliculas(a7).get(p1));
+
     }
 
     @Test
