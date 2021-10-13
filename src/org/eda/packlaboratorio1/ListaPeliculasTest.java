@@ -10,7 +10,9 @@ import org.junit.Test;
 
 import java.nio.file.attribute.DosFileAttributeView;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ListaPeliculasTest {
 
@@ -20,12 +22,15 @@ public class ListaPeliculasTest {
     String a3;
     String a4;
     String a5;
+    String a6;
     String a7;
     String p1;
+    String p3;
     String p4;
+    String p5;
     ArrayList<Actor> actoresOrdenados;
     ArrayList<Actor> actoresOrdenadosAutomaticamente;
-
+    Map<String, Pelicula> mapaVacio = new HashMap<String, Pelicula>();
 
 
     @Before
@@ -36,6 +41,7 @@ public class ListaPeliculasTest {
         a3 = "Actor3";
         a4 = "Actor4";
         a5 = "Actor5";
+        a6 = "Actor6";
         a7 ="Actor7";
         actoresOrdenados = new ArrayList<Actor>();
         actoresOrdenados.add(new Actor(a1));
@@ -44,7 +50,9 @@ public class ListaPeliculasTest {
         actoresOrdenados.add(new Actor(a4));
         actoresOrdenados.add(new Actor(a5));
         p1 = "Pelicula 1";
+        p3 = "Pelicula 3";
         p4 = "Pelicula 4";
+        p5 = "Pelicula 5";
 
         direccion = System.getProperty("user.dir") + "\\src\\org\\eda\\packlaboratorio1\\ListaPeliculasPequeña.txt";
         ListaPeliculas.getListaPeliculas().lectorArchivo(direccion);
@@ -121,15 +129,28 @@ public class ListaPeliculasTest {
 
     @Test
     public void testDevolverActores() {
+        //caso1: Devolver los actores de una película que está guardada y tiene actores.
         assertEquals(ListaPeliculas.getListaPeliculas().devolverActores(p1).get(a1).getNombre(),a1);
         assertNotEquals(ListaPeliculas.getListaPeliculas().devolverActores(p1).get(a1).getNombre(),a5);
 
+        //caso2:Devolver los actores de una película que no está guardada.
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverActores(p4), mapaVacio);
+
+        //caso3: Devolver los actores de una película que no tiene actores.
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverActores(p5), mapaVacio);
 
     }
 
     @Test
     public void testDevolverPeliculas() {
+        //Caso1: Devolver las películas de un actor que aparezca en más de una película.
         assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a1).get(p1).getTitulo(),p1);
+
+        //Caso2: Devolver las películas de un actor que solo aparezca en una película.
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a6).get(p3).getTitulo(),p3);
+
+        //Caso3: Devolver las películas de un actor que no aparezca en ninguna película. (En este caso como indica la postcondición se debería devolver un ArrayList vacío)
+        assertEquals(ListaPeliculas.getListaPeliculas().devolverPeliculas(a7),mapaVacio);
     }
 
     @Test
