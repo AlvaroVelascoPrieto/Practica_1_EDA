@@ -160,6 +160,11 @@ public class ListaPeliculas {
         return todos.ordenarActores();
     }
 
+    //Metodos para las pruebas
+    public double getRecaudacion(String pPelicula){
+        return this.peliculas.get(pPelicula).devolverRecaudacion();
+    }
+
 
 
 

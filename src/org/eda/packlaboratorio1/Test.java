@@ -8,7 +8,7 @@ public class Test {
 
     public static void main(String[] args) {
         //Stopwatch timer = new Stopwatch();
-        //ListaPeliculas.getListaPeliculas().lectorArchivo("C:/Users/alvar/IdeaProjects/Practica 1/src/org/eda/packlaboratorio1/FilmsActors20212022.txt");
+        //ListaPeliculas.getListaPeliculas().lectorArchivo("C:/Users/alvar/IdeaProjects/Practica 1/src/org/eda/packlaboratorio1/ListaPeliculasPequeña.txt");
         //ListaPeliculas.getListaPeliculas().guardarListaEnFichero("C:/Users/alvar/IdeaProjects/Practica 1/src/org/eda/packlaboratorio1/FicheroActores.txt");
         //ArrayList<Actor> actores = ListaPeliculas.getListaPeliculas().devolverTodosLosActoresOrdenados();
         //int i;

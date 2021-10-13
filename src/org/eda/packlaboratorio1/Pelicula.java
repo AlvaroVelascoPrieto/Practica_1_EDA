@@ -35,4 +35,12 @@ public class Pelicula {
     }
 
 
+    //Metodos para las pruebas
+    public double devolverRecaudacion(){
+        return this.recaudacion;
+    }
+
+    public String getTitulo(){
+        return this.nombre;
+    }
 }

@@ -23,9 +23,7 @@ public class ListaActores {
 
 
     public void borrarActor(String pNombre){
-        if (actores.containsKey(pNombre)) {
-            actores.remove(pNombre);
-        }
+        actores.remove(pNombre);
     }
 
     public HashMap<String,Actor> devolverActores(){
