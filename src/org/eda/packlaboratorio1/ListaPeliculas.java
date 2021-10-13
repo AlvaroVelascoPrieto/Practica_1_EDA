@@ -95,9 +95,9 @@ public class ListaPeliculas {
         }
         else {
             miActor = new Actor(pNombre);
+            todos.insertarActor(miActor);
         }
 
-        todos.insertarActor(miActor);
         if (peliculas.containsKey(pPelicula)){
             peliculas.get(pPelicula).insertarActor(miActor);
         }
