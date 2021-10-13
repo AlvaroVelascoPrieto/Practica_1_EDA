@@ -1,5 +1,9 @@
 package org.eda.packlaboratorio1;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class menu {
     private static menu miMenu;
     private menu(){
@@ -74,32 +78,46 @@ public class menu {
         ListaPeliculas.getListaPeliculas().insertarActor(nombrePelicula,nombreActor);
     }
 
-    private void obtenerPeliculasDeActor(){
+    private void obtenerPeliculasDeActor() {
         System.out.println("Introduce el nombre del actor del que quieres obtener las peliculas: (Apellidos, Nombre)");
         //Añadir scanner de teclado
         String nombreActor = Teclado.getTeclado().leerString();
-        ListaPeliculas.getListaPeliculas().devolverPeliculas(nombreActor);
+        HashMap<String, Pelicula> pelisHashMap = ListaPeliculas.getListaPeliculas().devolverPeliculas(nombreActor);
+        System.out.println("¿Desea imprimirlos por pantalla? 1:Si 0:No");
+        int respuesta = Teclado.getTeclado().leerInt();
+        if (respuesta == 1) {
+            for (Map.Entry<String, Pelicula> entry : pelisHashMap.entrySet()) {
+                System.out.println(entry.getKey());
+            }
+        }
     }
 
     private void obtenerActoresDeUnaPelicula(){
         System.out.println("Introduce el titulo de la pelicula de la que deseas obtener los actores: ");
         String tituloPelicula = Teclado.getTeclado().leerString();
-        ListaPeliculas.getListaPeliculas().devolverActores(tituloPelicula);
+        HashMap<String, Actor> actorHashMap = ListaPeliculas.getListaPeliculas().devolverActores(tituloPelicula);
+        System.out.println("¿Desea imprimirlos por pantalla? 1:Si 0:No");
+        int respuesta2 = Teclado.getTeclado().leerInt();
+        if (respuesta2==1){
+            for (Map.Entry<String, Actor> entry : actorHashMap.entrySet()) {
+                System.out.println(entry.getKey());
+            }
+        }
     }
 
     private void incrementarRecaudacion(){
         System.out.println("Introduce el titulo de la pelicula de la que quieres incrementar la recaudación: ");
-        String tituloPelicula = Teclado.getTeclado().leerString();
+        String tituloPelicula2 = Teclado.getTeclado().leerString();
         System.out.println("Introduce el importe por el que deseas incrementar la recaudación");
         //Añadir scanner teclado
         double importeIncremento = Teclado.getTeclado().leerDouble();
-        ListaPeliculas.getListaPeliculas().incrementarRecaudacion(tituloPelicula,importeIncremento);
+        ListaPeliculas.getListaPeliculas().incrementarRecaudacion(tituloPelicula2,importeIncremento);
     }
 
     private void eliminarActor(){
         System.out.println("Introduce el nombre del actor o actriz que deseas eliminar (Apellido, Nombre)");
-        String nombreActor = Teclado.getTeclado().leerString();;
-        ListaPeliculas.getListaPeliculas().borrarActor(nombreActor);
+        String nombreActor2 = Teclado.getTeclado().leerString();;
+        ListaPeliculas.getListaPeliculas().borrarActor(nombreActor2);
     }
 
     private void guardarLosDatosEnFichero(){
@@ -108,12 +126,20 @@ public class menu {
         ListaPeliculas.getListaPeliculas().guardarListaEnFichero(direccionArchivo);
     }
 
-    private void obtenerListaOrdenadaDeActores(){
-        ListaPeliculas.getListaPeliculas().devolverTodosLosActoresOrdenados();
+    private void obtenerListaOrdenadaDeActores() {
+        ArrayList<Actor> actors = ListaPeliculas.getListaPeliculas().devolverTodosLosActoresOrdenados();
+        System.out.println("¿Desea imprimirlos por pantalla? 1:Si 0:No");
+        int respuesta3 = Teclado.getTeclado().leerInt();
+        if (respuesta3 == 1) {
+            int i;
+            for (i = 0; i < actors.size(); i++) {
+                System.out.println(actors.get(i).getNombre());
+            }
+        }
     }
-
-
-
-
-
 }
+
+
+
+
+
