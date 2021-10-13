@@ -123,6 +123,8 @@ public class ListaPeliculasTest {
     public void testDevolverActores() {
         assertEquals(ListaPeliculas.getListaPeliculas().devolverActores(p1).get(a1).getNombre(),a1);
         assertNotEquals(ListaPeliculas.getListaPeliculas().devolverActores(p1).get(a1).getNombre(),a5);
+
+
     }
 
     @Test
