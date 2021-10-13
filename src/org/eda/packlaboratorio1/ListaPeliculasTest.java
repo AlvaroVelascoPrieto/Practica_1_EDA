@@ -97,6 +97,7 @@ public class ListaPeliculasTest {
 
     @Test
     public void testDevolverTodosLosActoresOrdenados() {
+        //Unico caso hecho
         actoresOrdenadosAutomaticamente = ListaPeliculas.getListaPeliculas().devolverTodosLosActoresOrdenados();
         assertEquals(actoresOrdenadosAutomaticamente.get(0).getNombre(),actoresOrdenados.get(0).getNombre());
         assertEquals(actoresOrdenadosAutomaticamente.get(1).getNombre(),actoresOrdenados.get(1).getNombre());
